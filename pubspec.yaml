@@ -34,7 +34,28 @@ dependencies:
   ################
   # UI SUPPORT
   ######
+
+  # State management
   flutter_bloc: ^8.0.0
+
+
+  ################
+  # Data SUPPORT
+  ######
+
+  # SQL
+  sqflite: ^2.2.5
+
+
+  ################
+  # Core
+  ######
+
+  # Date time
+  intl: ^0.18.0
+
+  # Metadata
+  meta:
 
 
   # The following adds the Cupertino Icons font to your application.
