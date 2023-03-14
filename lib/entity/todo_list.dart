@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 
-import 'ToDoTask.dart';
+import 'todo_task.dart';
 
 @immutable
 class ToDoList {

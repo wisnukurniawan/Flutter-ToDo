@@ -1,0 +1,1 @@
+enum ToDoStatus { inProgress, complete }
