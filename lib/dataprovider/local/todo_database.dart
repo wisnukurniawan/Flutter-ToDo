@@ -1,3 +1,5 @@
+import 'package:flutter_todo_list/dataprovider/local/todo_list_query.dart';
+import 'package:flutter_todo_list/dataprovider/local/todo_task_query.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -19,25 +21,9 @@ class ToDoDatabase {
         version: 1,
         onOpen: (db) async {}, onCreate: (Database db, int version) async {
       // Create all tables
-      await db.execute("CREATE TABLE IF NOT EXISTS `todo_list` ("
-          "`id` TEXT NOT NULL, "
-          "`name` TEXT NOT NULL, "
-          "`created_at` INTEGER NOT NULL, "
-          "`updated_at` INTEGER NOT NULL, "
-          "PRIMARY KEY(`id`))");
-      await db.execute("CREATE TABLE IF NOT EXISTS `todo_task` ("
-          "`id` TEXT NOT NULL, "
-          "`name` TEXT NOT NULL, "
-          "`list_id` TEXT NOT NULL, "
-          "`status` TEXT NOT NULL, "
-          "`completed_at` INTEGER, "
-          "`created_at` INTEGER NOT NULL, "
-          "`updated_at` INTEGER NOT NULL, "
-          "PRIMARY KEY(`id`), "
-          "FOREIGN KEY(`list_id`) REFERENCES `todo_list`(`id`) "
-          "ON UPDATE NO ACTION ON DELETE CASCADE )");
-      await db.execute("CREATE INDEX IF NOT EXISTS `index_todo_task_list_id` "
-          "ON `todo_task` (`list_id`)");
+      await db.execute(createToDoListTable);
+      await db.execute(createToDoTaskTable);
+      await db.execute(createToDoTaskIndexTable);
     });
   }
 }

@@ -1,0 +1,2 @@
+- test dao function
+- create view component

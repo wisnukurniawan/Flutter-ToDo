@@ -1,0 +1,53 @@
+-- https://sqliteonline.com/
+CREATE TABLE IF NOT EXISTS `todo_lists` (
+  `id` TEXT NOT NULL,
+  `name` TEXT NOT NULL,
+  `created_at` INTEGER NOT NULL,
+  `updated_at` INTEGER NOT NULL,
+  PRIMARY KEY(`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `todo_tasks` (
+  `id` TEXT NOT NULL,
+  `name` TEXT NOT NULL,
+  `list_id` TEXT NOT NULL,
+  `status` TEXT NOT NULL,
+  `completed_at` INTEGER,
+  `created_at` INTEGER NOT NULL,
+  `updated_at` INTEGER NOT NULL,
+  PRIMARY KEY(`id`),
+  FOREIGN KEY(`list_id`) REFERENCES `todo_list`(`id`)
+  ON UPDATE NO ACTION ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS `index_todo_tasks_list_id`
+  ON `todo_tasks` (`list_id`);
+
+INSERT OR REPLACE INTO  `todo_lists` (id, name, created_at, updated_at)
+    VALUES ('1', 'todo 1', 12, 12);
+INSERT OR REPLACE INTO todo_tasks(id, name, status, completed_at, created_at, updated_at, list_id)
+    VALUES ('1', 'task 1', 'in_progress', 12, 12, 12, '1');
+INSERT OR REPLACE INTO todo_tasks(id, name, status, completed_at, created_at, updated_at, list_id)
+    VALUES ('2', 'task 2', 'in_progress', 12, 12, 12, '1');
+INSERT OR REPLACE INTO todo_tasks(id, name, status, completed_at, created_at, updated_at, list_id)
+    VALUES ('3', 'task 3', 'in_progress', 12, 12, 12, '1');
+INSERT OR REPLACE INTO todo_tasks(id, name, status, completed_at, created_at, updated_at, list_id)
+    VALUES ('4', 'task 4', 'in_progress', 12, 12, 12, '1');
+SELECT * from todo_lists;
+SELECT * FROM todo_tasks;
+SELECT
+  todo_lists.id,
+  todo_lists.name,
+  todo_lists.created_at,
+  todo_lists.updated_at,
+  todo_tasks.id AS task_id,
+  todo_tasks.name AS task_name,
+  todo_tasks.status AS task_status,
+  todo_tasks.completed_at AS task_completed_at,
+  todo_tasks.created_at AS task_created_at,
+  todo_tasks.updated_at AS task_updated_at
+FROM
+  todo_lists
+  LEFT JOIN todo_tasks ON todo_lists.id = todo_tasks.list_id
+WHERE
+  todo_lists.id = 1;
