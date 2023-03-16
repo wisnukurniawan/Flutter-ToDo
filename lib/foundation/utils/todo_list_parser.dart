@@ -28,10 +28,11 @@ ToDoList toToDoList(Map<String, dynamic> map) {
 }
 
 ToDoList toToDoListWithTasks(List<Map<String, dynamic>> maps) {
-  return maps.fold<ToDoList>(toToDoList(maps.first),
-      (prev, element) {
-    final toDoTask = toToDoTaskAlias(element);
-    prev.tasks.add(toDoTask);
+  return maps.fold<ToDoList>(toToDoList(maps.first), (prev, element) {
+    if (element['task_id'] != null) {
+      final toDoTask = toToDoTaskAlias(element);
+      prev.tasks.add(toDoTask);
+    }
     return prev;
   });
 }
