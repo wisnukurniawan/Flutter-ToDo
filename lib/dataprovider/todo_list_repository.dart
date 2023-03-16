@@ -30,7 +30,7 @@ class ToDoListRepository {
   }
 
   Future<ToDoList> getToDoList(String id) async {
-    final result = await _toDoListProvider.rawQuery(queryToDoListWithTask);
+    final result = await _toDoListProvider.rawQuery(queryToDoListWithTask, [id]);
     return toToDoListWithTasks(result);
   }
 }

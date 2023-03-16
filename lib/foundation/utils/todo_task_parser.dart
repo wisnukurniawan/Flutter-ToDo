@@ -9,7 +9,7 @@ extension ToDoTaskParserExtension on ToDoTask {
       'id': id,
       'name': name,
       'list_id': listId,
-      'status': status.toString(),
+      'status': status.name,
       'completed_at': completedAt?.toMillis(),
       'created_at': createdAt.toMillis(),
       'updated_at': updatedAt.toMillis(),
@@ -18,7 +18,7 @@ extension ToDoTaskParserExtension on ToDoTask {
 
   Map<String, dynamic> toStatusMap(String listId) {
     return {
-      'status': status.toString(),
+      'status': status.name,
       'completed_at': completedAt?.toMillis(),
       'updated_at': updatedAt.toMillis()
     };

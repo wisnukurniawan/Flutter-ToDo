@@ -30,7 +30,8 @@ ToDoList toToDoListWithTasks(List<Map<String, dynamic>> maps) {
   return maps.fold<ToDoList>(toToDoList(maps.first), (prev, element) {
     if (element['task_id'] != null) {
       final toDoTask = toToDoTaskAlias(element);
-      prev.tasks.add(toDoTask);
+      final newTasks = List.of(prev.tasks)..add(toDoTask);
+      prev = prev.copyWith(tasks: newTasks);
     }
     return prev;
   });
