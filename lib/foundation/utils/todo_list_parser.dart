@@ -12,7 +12,7 @@ extension ToDoListParserExtension on ToDoList {
     };
   }
 
-  Map<String, dynamic> toNameMap(String listId) {
+  Map<String, dynamic> toNameMap() {
     return {'name': name, 'updated_at': updatedAt.toMillis()};
   }
 }

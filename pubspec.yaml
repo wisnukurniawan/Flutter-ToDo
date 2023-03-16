@@ -61,6 +61,12 @@ dependencies:
   # Collection
   collection:
 
+  # DI
+  get_it: ^7.2.0
+
+  # Logger
+  logger: ^1.3.0
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

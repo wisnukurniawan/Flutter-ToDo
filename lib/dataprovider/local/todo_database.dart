@@ -6,17 +6,9 @@ import 'package:sqflite/sqflite.dart';
 const todoDbName = "todo.db";
 
 class ToDoDatabase {
-  Database? _database;
+  static final ToDoDatabase db = ToDoDatabase();
 
-  Future<Database> get database async {
-    if (_database != null) {
-      return _database!;
-    }
-    _database = await openDb();
-    return _database!;
-  }
-
-  Future openDb() async {
+  Future<Database> openDb() async {
     return await openDatabase(join(await getDatabasesPath(), todoDbName),
         version: 1,
         onOpen: (db) async {}, onCreate: (Database db, int version) async {

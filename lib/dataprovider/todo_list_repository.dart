@@ -19,9 +19,9 @@ class ToDoListRepository {
     _toDoListProvider.insertToDoLists(values);
   }
 
-  Future<void> updateToDoListName(ToDoList toDoList, String id) async {
-    final value = toDoList.toNameMap(id);
-    _toDoListProvider.updateToDoList(value, id);
+  Future<void> updateToDoListName(ToDoList toDoList) async {
+    final value = toDoList.toNameMap();
+    _toDoListProvider.updateToDoList(value, toDoList.id);
   }
 
   Future<List<ToDoList>> getAllToDoLists() async {

@@ -1,6 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_list/dataprovider/local/todo_database.dart';
+import 'package:flutter_todo_list/dataprovider/local/todo_list_provider.dart';
+import 'package:flutter_todo_list/dataprovider/local/todo_task_provider.dart';
+import 'package:flutter_todo_list/dataprovider/todo_list_repository.dart';
+import 'package:flutter_todo_list/dataprovider/todo_task_repository.dart';
+import 'package:get_it/get_it.dart';
+import 'package:sqflite/sqflite.dart';
+
+import 'feature/test_repository/ui/test_repository_screen.dart';
 
 void main() {
+  final getIt = GetIt.instance;
+
+  getIt.registerSingletonAsync<Database>(() async {
+    return ToDoDatabase.db.openDb();
+  });
+  getIt.registerLazySingleton<ToDoListProvider>(
+    () => ToDoListProvider(getIt<Database>()),
+  );
+  getIt.registerLazySingleton<ToDoTaskProvider>(
+    () => ToDoTaskProvider(getIt<Database>()),
+  );
+  getIt.registerLazySingleton<ToDoListRepository>(
+    () => ToDoListRepository(getIt<ToDoListProvider>()),
+  );
+  getIt.registerLazySingleton<ToDoTaskRepository>(
+    () => ToDoTaskRepository(getIt<ToDoTaskProvider>()),
+  );
+
   runApp(const MyApp());
 }
 
@@ -15,7 +42,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page2'),
+      home: const TestRepositoryScreen(),
     );
   }
 }
