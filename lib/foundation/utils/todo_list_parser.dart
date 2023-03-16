@@ -28,7 +28,7 @@ ToDoList toToDoList(Map<String, dynamic> map) {
 }
 
 ToDoList toToDoListWithTasks(List<Map<String, dynamic>> maps) {
-  return maps.whereNotNull().fold<ToDoList>(toToDoList(maps.first),
+  return maps.fold<ToDoList>(toToDoList(maps.first),
       (prev, element) {
     final toDoTask = toToDoTaskAlias(element);
     prev.tasks.add(toDoTask);
