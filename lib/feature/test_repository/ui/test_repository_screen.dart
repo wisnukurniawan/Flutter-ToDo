@@ -19,7 +19,6 @@ class TestRepositoryScreen extends StatelessWidget {
       printer: PrettyPrinter(),
     );
     return Container(
-        color: Colors.red,
         child: Padding(
           padding: const EdgeInsets.all(50.0),
           child: Column(

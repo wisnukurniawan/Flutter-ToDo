@@ -94,6 +94,22 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+    - family: Sans
+      fonts:
+        - asset: fonts/sans_bold.ttf
+          weight: 600
+        - asset: fonts/sans_light.ttf
+          weight: 300
+        - asset: fonts/sans_medium.ttf
+          weight: 500
+        - asset: fonts/sans_regular.ttf
+          weight: 400
+    - family: Lato
+      fonts:
+        - asset: fonts/lato_regular.ttf
+          weight: 400
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -4,6 +4,8 @@ import 'package:flutter_todo_list/dataprovider/local/todo_list_provider.dart';
 import 'package:flutter_todo_list/dataprovider/local/todo_task_provider.dart';
 import 'package:flutter_todo_list/dataprovider/todo_list_repository.dart';
 import 'package:flutter_todo_list/dataprovider/todo_task_repository.dart';
+import 'package:flutter_todo_list/foundation/theme/color.dart';
+import 'package:flutter_todo_list/foundation/theme/text.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -37,12 +39,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, widget) {
+        return FutureBuilder(
+            future: GetIt.instance.allReady(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              return const MyHomePage(
+                title: "ToDo",
+              );
+            });
+      },
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.red,
         useMaterial3: true,
+        colorScheme: lightColorPalette,
+        textTheme: textTheme,
       ),
-      home: const TestRepositoryScreen(),
     );
   }
 }
@@ -71,24 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      body: const Center(
+        child: TestRepositoryScreen(),
       ),
     );
   }
