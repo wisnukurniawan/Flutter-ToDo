@@ -8,7 +8,6 @@ import 'package:flutter_todo_list/dataprovider/todo_list_repository.dart';
 import 'package:flutter_todo_list/dataprovider/todo_task_repository.dart';
 import 'package:flutter_todo_list/feature/host/bloc/host_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 import 'dataprovider/preference/ThemeProvider.dart';
@@ -26,8 +25,8 @@ Future<void> initLocator() async {
   final getIt = GetIt.instance;
 
   // Init DB
-  getIt.registerLazySingletonAsync<Database>(
-    () async => ToDoDatabase.db.openDb(),
+  getIt.registerLazySingleton<ToDoDatabase>(
+    () => ToDoDatabase(),
   );
 
   // Init preferences
@@ -36,22 +35,22 @@ Future<void> initLocator() async {
   );
 
   // Init data provider
-  getIt.registerLazySingletonAsync<ToDoListProvider>(
-    () async => ToDoListProvider(await getIt.getAsync()),
+  getIt.registerLazySingleton<ToDoListProvider>(
+    () => ToDoListProvider(getIt.get()),
   );
-  getIt.registerLazySingletonAsync<ToDoTaskProvider>(
-    () async => ToDoTaskProvider(await getIt.getAsync()),
+  getIt.registerLazySingleton<ToDoTaskProvider>(
+    () => ToDoTaskProvider(getIt.get()),
   );
   getIt.registerLazySingletonAsync<ThemeProvider>(
     () async => ThemeProvider(await getIt.getAsync()),
   );
 
   // Init repository
-  getIt.registerLazySingletonAsync<ToDoListRepository>(
-    () async => ToDoListRepository(await getIt.getAsync()),
+  getIt.registerLazySingleton<ToDoListRepository>(
+    () => ToDoListRepository(getIt.get()),
   );
-  getIt.registerLazySingletonAsync<ToDoTaskRepository>(
-    () async => ToDoTaskRepository(await getIt.getAsync()),
+  getIt.registerLazySingleton<ToDoTaskRepository>(
+    () => ToDoTaskRepository(getIt.get()),
   );
   getIt.registerLazySingletonAsync<ThemeRepository>(
     () async => ThemeRepository(await getIt.getAsync()),

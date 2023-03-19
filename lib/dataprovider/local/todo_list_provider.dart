@@ -1,42 +1,39 @@
-import 'package:flutter_todo_list/dataprovider/local/todo_provider.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:drift/drift.dart';
+import 'package:flutter_todo_list/dataprovider/local/todo_database.dart';
 
-class ToDoListProvider extends ToDoProvider {
+class ToDoListProvider {
+  final ToDoDatabase _database;
 
-  const ToDoListProvider(super.database);
+  const ToDoListProvider(this._database);
 
-  Future<void> deleteToDoList(String id) async {
-    await database.delete(
-      'todo_lists',
-      where: 'id = ?',
-      whereArgs: [id],
+  Future deleteToDoList(String id) {
+    return (_database.delete(_database.todoLists)
+          ..where((tbl) => tbl.id.equals(id)))
+        .go();
+  }
+
+  Future<void> insertToDoLists(List<Map<String, dynamic>> values) async {
+    await _database.batch((batch) {
+      batch.insertAllOnConflictUpdate(
+          _database.todoLists, values.map((data) => TodoList.fromJson(data)));
+    });
+  }
+
+  Future updateToDoListName(String id, String name, int updatedAt) {
+    return (_database.update(_database.todoLists)
+          ..where((tbl) => tbl.id.equals(id)))
+        .write(
+      TodoListsCompanion(name: Value(name), updatedAt: Value(updatedAt)),
     );
   }
 
-  Future<void> insertToDoLists(List<Map<String, Object?>> values) async {
-    final batch = database.batch();
-    for (var value in values) {
-      batch.insert(
-        'todo_lists',
-        value,
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-    }
-    await batch.commit();
+  Stream<List<Map<String, dynamic>>> getAllToDoLists() {
+    return (_database.select(_database.todoLists))
+        .map((data) => data.toJson())
+        .watch();
   }
 
-  Future<void> updateToDoList(
-      Map<String, Object?> value, String id) async {
-    await database.update(
-      'todo_lists',
-      value,
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+  Stream<List<GetAllListWithTaskByIdResult>> getToDoListWithTaskById(String id) {
+    return _database.getAllListWithTaskById(id).watch();
   }
-
-  Future<List<Map<String, Object?>>> getAllToDoLists() async {
-    return await database.query('todo_lists');
-  }
-
 }

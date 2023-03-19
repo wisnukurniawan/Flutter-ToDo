@@ -1,21 +1,27 @@
-import 'package:flutter_todo_list/dataprovider/local/todo_list_query.dart';
-import 'package:flutter_todo_list/dataprovider/local/todo_task_query.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+import 'dart:io';
 
-const todoDbName = "todo.db";
+import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
 
-class ToDoDatabase {
-  static final ToDoDatabase db = ToDoDatabase();
+part 'todo_database.g.dart';
 
-  Future<Database> openDb() async {
-    return await openDatabase(join(await getDatabasesPath(), todoDbName),
-        version: 1,
-        onOpen: (db) async {}, onCreate: (Database db, int version) async {
-      // Create all tables
-      await db.execute(createToDoListTable);
-      await db.execute(createToDoTaskTable);
-      await db.execute(createToDoTaskIndexTable);
-    });
-  }
+@DriftDatabase(
+  include: {'todo_database_query.drift'},
+)
+class ToDoDatabase extends _$ToDoDatabase {
+  ToDoDatabase() : super(_openConnection());
+
+  @override
+  int get schemaVersion => 1;
+
+}
+
+LazyDatabase _openConnection() {
+  return LazyDatabase(() async {
+    final dbFolder = await getApplicationDocumentsDirectory();
+    final file = File(p.join(dbFolder.path, 'todo_db.sqlite'));
+    return NativeDatabase.createInBackground(file);
+  });
 }

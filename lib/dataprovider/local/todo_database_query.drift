@@ -1,0 +1,41 @@
+CREATE TABLE IF NOT EXISTS todo_lists (
+  id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS todo_tasks (
+  id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  list_id TEXT NOT NULL,
+  status TEXT NOT NULL,
+  completed_at INTEGER,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(list_id) REFERENCES todo_lists(id)
+  ON UPDATE NO ACTION ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS index_todo_tasks_list_id
+  ON todo_tasks (list_id);
+
+getAllListWithTaskById:
+    SELECT
+      todo_lists.id,
+      todo_lists.name,
+      todo_lists.created_at,
+      todo_lists.updated_at,
+      todo_tasks.id AS task_id,
+      todo_tasks.name AS task_name,
+      todo_tasks.status AS task_status,
+      todo_tasks.completed_at AS task_completed_at,
+      todo_tasks.created_at AS task_created_at,
+      todo_tasks.updated_at AS task_updated_at
+    FROM
+      todo_lists
+      LEFT JOIN todo_tasks ON todo_lists.id = todo_tasks.list_id
+    WHERE
+      todo_lists.id = ?;

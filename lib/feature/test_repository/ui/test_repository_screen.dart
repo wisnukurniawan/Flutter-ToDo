@@ -57,17 +57,19 @@ class TestRepositoryScreen extends StatelessWidget {
           ),
           FilledButton(
             onPressed: () async {
-              final data = await GetIt.instance.get<ToDoListRepository>().getAllToDoLists();
-              for (var element in data) {
-                logger.d("all todo list $element");
-              }
+              GetIt.instance.get<ToDoListRepository>().getAllToDoLists().listen((data) {
+                for (var element in data) {
+                  logger.d("all todo list $element");
+                }
+              });
             },
             child: const Text('Get all todo list'),
           ),
           FilledButton(
             onPressed: () async {
-              final data = await GetIt.instance.get<ToDoListRepository>().getToDoList("1");
-              logger.d("todo list by id 1 $data");
+              GetIt.instance.get<ToDoListRepository>().getToDoList("1").listen((data) {
+                logger.d("todo list by id 1 $data");
+              });
             },
             child: const Text('Get todo list by id'),
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter_todo_list/entity/todo_status.dart';
 import 'package:flutter_todo_list/foundation/utils/date_time_converter.dart';
 
+import '../../dataprovider/local/todo_database.dart';
 import '../../entity/todo_task.dart';
 
 extension ToDoTaskParserExtension on ToDoTask {
@@ -23,7 +24,6 @@ extension ToDoTaskParserExtension on ToDoTask {
       'updated_at': updatedAt.toMillis()
     };
   }
-
 }
 
 ToDoTask toToDoTask(Map<String, dynamic> map) {
@@ -48,4 +48,15 @@ ToDoTask toToDoTaskAlias(Map<String, dynamic> map) {
           : null,
       createdAt: (map['task_created_at'] as int).toDateTime(),
       updatedAt: (map['task_updated_at'] as int).toDateTime());
+}
+
+ToDoTask toToDoTaskAliasDrift(GetAllListWithTaskByIdResult result) {
+  return ToDoTask(
+      id: result.taskId ?? "",
+      name: result.taskName ?? "",
+      status: ToDoStatus.values
+          .byName(result.taskStatus ?? ToDoStatus.inProgress.name),
+      completedAt: result.taskCompletedAt?.toDateTime(),
+      createdAt: result.taskCreatedAt?.toDateTime() ?? DateTime.now(),
+      updatedAt: result.taskUpdatedAt?.toDateTime() ?? DateTime.now());
 }

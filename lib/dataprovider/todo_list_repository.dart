@@ -1,9 +1,8 @@
-import 'package:collection/collection.dart';
 import 'package:flutter_todo_list/entity/todo_list.dart';
+import 'package:flutter_todo_list/foundation/utils/date_time_converter.dart';
 import 'package:flutter_todo_list/foundation/utils/todo_list_parser.dart';
 
 import 'local/todo_list_provider.dart';
-import 'local/todo_list_query.dart';
 
 class ToDoListRepository {
   final ToDoListProvider _toDoListProvider;
@@ -20,17 +19,20 @@ class ToDoListRepository {
   }
 
   Future<void> updateToDoListName(ToDoList toDoList) async {
-    final value = toDoList.toNameMap();
-    _toDoListProvider.updateToDoList(value, toDoList.id);
+    _toDoListProvider.updateToDoListName(
+        toDoList.id, toDoList.name, toDoList.updatedAt.toMillis());
   }
 
-  Future<List<ToDoList>> getAllToDoLists() async {
-    final result = await _toDoListProvider.getAllToDoLists();
-    return result.whereNotNull().map((values) => toToDoList(values)).toList();
+  Stream<List<ToDoList>> getAllToDoLists() {
+    return _toDoListProvider
+        .getAllToDoLists()
+        .map((values) => values.map((item) => toToDoList(item)).toList());
   }
 
-  Future<ToDoList> getToDoList(String id) async {
-    final result = await _toDoListProvider.rawQuery(queryToDoListWithTask, [id]);
-    return toToDoListWithTasks(result);
+  Stream<ToDoList> getToDoList(String id) {
+    return _toDoListProvider
+        .getToDoListWithTaskById(id)
+        .where((event) => event.isNotEmpty)
+        .map((event) => toToDoListWithTasksDrift(event));
   }
 }
