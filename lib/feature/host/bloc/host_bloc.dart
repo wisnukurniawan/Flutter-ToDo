@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_todo_list/data_provider/theme_repository.dart';
-import 'package:flutter_todo_list/feature/host/bloc/host_logic.dart';
 
 import 'host_event.dart';
 import 'host_state.dart';

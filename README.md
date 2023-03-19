@@ -1,16 +1,9 @@
-# flutter_todo_list
+## Flutter playground: To Do List App
 
-Flutter playground To Do List App
+Compose playground for learning purpose
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Uses [Flutter bloc](https://pub.dev/packages/flutter_bloc) for state management
+* Uses [Drift](https://pub.dev/packages/drift) for SQL local storage
+* Uses [Streaming shared preferences](https://pub.dev/packages/streaming_shared_preferences) for key-value persistence
+* Uses [Get it](https://pub.dev/packages/get_it) for service locator
+* Uses [Go router](https://pub.dev/packages/go_router) for navigation
