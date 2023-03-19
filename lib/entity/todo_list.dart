@@ -5,18 +5,18 @@ import 'todo_task.dart';
 
 @immutable
 class ToDoList {
-  final String id;
-  final String name;
-  final List<ToDoTask> tasks;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-
   const ToDoList(
       {required this.id,
       required this.name,
       this.tasks = const [],
       required this.createdAt,
       required this.updatedAt});
+
+  final String id;
+  final String name;
+  final List<ToDoTask> tasks;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   ToDoList copyWith({
     String? id,

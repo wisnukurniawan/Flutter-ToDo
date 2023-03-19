@@ -2,9 +2,9 @@ import 'package:drift/drift.dart';
 import 'package:flutter_todo_list/data_provider/local/todo_database.dart';
 
 class ToDoListProvider {
-  final ToDoDatabase _database;
-
   const ToDoListProvider(this._database);
+
+  final ToDoDatabase _database;
 
   Future deleteToDoList(String id) {
     return (_database.delete(_database.todoLists)

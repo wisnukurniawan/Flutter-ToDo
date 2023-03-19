@@ -25,7 +25,7 @@ class HostBloc extends Bloc<HostEvent, HostState> {
   }
 
   void _onThemeLoaded(ThemeLoaded event, Emitter<HostState> emit) {
-    emit(state.copyWith(colorScheme: toColorScheme(event.theme)));
+    emit(state.copyWith(theme: event.theme));
   }
 
   @override

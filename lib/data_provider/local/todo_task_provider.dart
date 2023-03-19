@@ -2,9 +2,9 @@ import 'package:drift/drift.dart';
 import 'package:flutter_todo_list/data_provider/local/todo_database.dart';
 
 class ToDoTaskProvider {
-  final ToDoDatabase _database;
-
   const ToDoTaskProvider(this._database);
+
+  final ToDoDatabase _database;
 
   Future<void> insertToDoTasks(List<Map<String, Object?>> values) async {
     await _database.batch((batch) {

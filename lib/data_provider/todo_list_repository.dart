@@ -5,9 +5,9 @@ import 'package:flutter_todo_list/foundation/utils/todo_list_parser.dart';
 import 'local/todo_list_provider.dart';
 
 class ToDoListRepository {
-  final ToDoListProvider _toDoListProvider;
-
   const ToDoListRepository(this._toDoListProvider);
+
+  final ToDoListProvider _toDoListProvider;
 
   Future<void> deleteToDoList(String id) async {
     _toDoListProvider.deleteToDoList(id);

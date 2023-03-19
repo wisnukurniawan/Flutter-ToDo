@@ -4,12 +4,6 @@ import 'todo_status.dart';
 
 @immutable
 class ToDoTask {
-  final String id;
-  final String name;
-  final ToDoStatus status;
-  final DateTime? completedAt;
-  final DateTime createdAt;
-  final DateTime updatedAt;
 
   const ToDoTask(
       {required this.id,
@@ -18,6 +12,13 @@ class ToDoTask {
       this.completedAt,
       required this.createdAt,
       required this.updatedAt});
+
+  final String id;
+  final String name;
+  final ToDoStatus status;
+  final DateTime? completedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   ToDoTask copyWith({
     String? id,
