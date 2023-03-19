@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Theme;
+import 'package:flutter_todo_list/dataprovider/theme_repository.dart';
 import 'package:flutter_todo_list/dataprovider/todo_list_repository.dart';
 import 'package:flutter_todo_list/dataprovider/todo_task_repository.dart';
+import 'package:flutter_todo_list/entity/theme.dart';
 import 'package:flutter_todo_list/entity/todo_status.dart';
 import 'package:flutter_todo_list/entity/todo_task.dart';
 import 'package:get_it/get_it.dart';
@@ -129,6 +131,18 @@ class TestRepositoryScreen extends StatelessWidget {
               await GetIt.instance.get<ToDoTaskRepository>().deleteToDoTask("1");
             },
             child: const Text('Delete todo task'),
+          ),
+          FilledButton(
+            onPressed: () async {
+              await GetIt.instance.get<ThemeRepository>().setTheme(Theme.twilight);
+            },
+            child: const Text('Set twilight theme'),
+          ),
+          FilledButton(
+            onPressed: () async {
+              await GetIt.instance.get<ThemeRepository>().setTheme(Theme.night);
+            },
+            child: const Text('Set night theme'),
           )
         ],
       ),

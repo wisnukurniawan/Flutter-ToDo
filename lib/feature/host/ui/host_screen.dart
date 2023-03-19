@@ -4,18 +4,24 @@ import 'package:flutter_todo_list/feature/host/bloc/host_bloc.dart';
 import 'package:flutter_todo_list/feature/host/bloc/host_event.dart';
 import 'package:flutter_todo_list/feature/host/bloc/host_state.dart';
 import 'package:flutter_todo_list/runtime/navigation/main_router.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../../foundation/theme/text.dart';
-import '../../test_repository/ui/test_repository_screen.dart';
+import '../../../foundation/widget/FutureResolve.dart';
 
 class HostScreen extends StatelessWidget {
   const HostScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => HostBloc()..add(const LoadTheme()),
-      child: const Theme(),
+    return FutureResolve<HostBloc>(
+      future: GetIt.instance.getAsync<HostBloc>(),
+      builder: (bloc) {
+        return BlocProvider(
+          create: (_) => bloc..add(const LoadTheme()),
+          child: const Theme(),
+        );
+      },
     );
   }
 }
@@ -39,5 +45,3 @@ class Theme extends StatelessWidget {
     );
   }
 }
-
-
