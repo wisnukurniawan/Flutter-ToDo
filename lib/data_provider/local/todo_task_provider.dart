@@ -1,5 +1,5 @@
 import 'package:drift/drift.dart';
-import 'package:flutter_todo_list/dataprovider/local/todo_database.dart';
+import 'package:flutter_todo_list/data_provider/local/todo_database.dart';
 
 class ToDoTaskProvider {
   final ToDoDatabase _database;

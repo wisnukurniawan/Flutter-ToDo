@@ -1,4 +1,4 @@
-import 'package:flutter_todo_list/dataprovider/preference/ThemeProvider.dart';
+import 'package:flutter_todo_list/data_provider/preference/ThemeProvider.dart';
 import 'package:flutter_todo_list/foundation/utils/theme_parser.dart';
 
 import '../entity/theme.dart';

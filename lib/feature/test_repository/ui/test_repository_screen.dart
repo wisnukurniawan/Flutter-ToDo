@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' hide Theme;
-import 'package:flutter_todo_list/dataprovider/theme_repository.dart';
-import 'package:flutter_todo_list/dataprovider/todo_list_repository.dart';
-import 'package:flutter_todo_list/dataprovider/todo_task_repository.dart';
+import 'package:flutter_todo_list/data_provider/theme_repository.dart';
+import 'package:flutter_todo_list/data_provider/todo_list_repository.dart';
+import 'package:flutter_todo_list/data_provider/todo_task_repository.dart';
 import 'package:flutter_todo_list/entity/theme.dart';
 import 'package:flutter_todo_list/entity/todo_status.dart';
 import 'package:flutter_todo_list/entity/todo_task.dart';

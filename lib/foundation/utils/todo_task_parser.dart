@@ -1,7 +1,7 @@
 import 'package:flutter_todo_list/entity/todo_status.dart';
 import 'package:flutter_todo_list/foundation/utils/date_time_converter.dart';
 
-import '../../dataprovider/local/todo_database.dart';
+import '../../data_provider/local/todo_database.dart';
 import '../../entity/todo_task.dart';
 
 extension ToDoTaskParserExtension on ToDoTask {

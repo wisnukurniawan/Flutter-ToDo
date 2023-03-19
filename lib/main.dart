@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_todo_list/dataprovider/local/todo_database.dart';
-import 'package:flutter_todo_list/dataprovider/local/todo_list_provider.dart';
-import 'package:flutter_todo_list/dataprovider/local/todo_task_provider.dart';
-import 'package:flutter_todo_list/dataprovider/theme_repository.dart';
-import 'package:flutter_todo_list/dataprovider/todo_list_repository.dart';
-import 'package:flutter_todo_list/dataprovider/todo_task_repository.dart';
+import 'package:flutter_todo_list/data_provider/local/todo_database.dart';
+import 'package:flutter_todo_list/data_provider/local/todo_list_provider.dart';
+import 'package:flutter_todo_list/data_provider/local/todo_task_provider.dart';
+import 'package:flutter_todo_list/data_provider/theme_repository.dart';
+import 'package:flutter_todo_list/data_provider/todo_list_repository.dart';
+import 'package:flutter_todo_list/data_provider/todo_task_repository.dart';
 import 'package:flutter_todo_list/feature/host/bloc/host_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
-import 'dataprovider/preference/ThemeProvider.dart';
+import 'data_provider/preference/ThemeProvider.dart';
 import 'feature/host/ui/host_screen.dart';
 
 Future<void> main() async {
