@@ -34,25 +34,25 @@ void _initPreferences() {
 }
 
 void _initDataProvider() {
-  getIt.registerLazySingleton<ToDoListProvider>(
+  getIt.registerFactory<ToDoListProvider>(
     () => ToDoListProvider(getIt.get()),
   );
-  getIt.registerLazySingleton<ToDoTaskProvider>(
+  getIt.registerFactory<ToDoTaskProvider>(
     () => ToDoTaskProvider(getIt.get()),
   );
-  getIt.registerLazySingletonAsync<ThemeProvider>(
+  getIt.registerFactoryAsync<ThemeProvider>(
     () async => ThemeProvider(await getIt.getAsync()),
   );
 }
 
 void _initRepository() {
-  getIt.registerLazySingleton<ToDoListRepository>(
+  getIt.registerFactory<ToDoListRepository>(
     () => ToDoListRepository(getIt.get()),
   );
-  getIt.registerLazySingleton<ToDoTaskRepository>(
+  getIt.registerFactory<ToDoTaskRepository>(
     () => ToDoTaskRepository(getIt.get()),
   );
-  getIt.registerLazySingletonAsync<ThemeRepository>(
+  getIt.registerFactoryAsync<ThemeRepository>(
     () async => ThemeRepository(await getIt.getAsync()),
   );
 }
