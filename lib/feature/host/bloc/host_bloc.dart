@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_todo_list/data_provider/theme_repository.dart';
+import 'package:flutter/material.dart' hide Theme;
+import '../../../entity/theme.dart';
+import '../../../foundation/theme/color.dart';
 
 import 'host_event.dart';
 import 'host_state.dart';
@@ -9,7 +12,8 @@ import 'host_state.dart';
 class HostBloc extends Bloc<HostEvent, HostState> {
   HostBloc({
     required ThemeRepository themeRepository,
-  }) : _themeRepository = themeRepository, super(const HostState()) {
+  })  : _themeRepository = themeRepository,
+        super(const HostState()) {
     on<LoadTheme>(_onLoadTheme);
     on<ThemeLoaded>(_onThemeLoaded);
   }
@@ -25,6 +29,21 @@ class HostBloc extends Bloc<HostEvent, HostState> {
 
   void _onThemeLoaded(ThemeLoaded event, Emitter<HostState> emit) {
     emit(state.copyWith(theme: event.theme));
+  }
+
+  static ColorScheme toColorScheme(Theme theme) {
+    switch (theme) {
+      case Theme.light:
+        return lightColorPalette;
+      case Theme.twilight:
+        return twilightColorPalette;
+      case Theme.night:
+        return nightColorPalette;
+      case Theme.sunrise:
+        return sunriseColorPalette;
+      case Theme.aurora:
+        return auroraColorPalette;
+    }
   }
 
   @override

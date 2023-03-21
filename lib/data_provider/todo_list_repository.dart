@@ -1,11 +1,11 @@
-import 'package:flutter_todo_list/data_provider/utils/date_time_converter.dart';
-import 'package:flutter_todo_list/data_provider/utils/todo_list_parser.dart';
+import 'package:flutter_todo_list/utils/date_time_converter.dart';
+import 'package:flutter_todo_list/data_provider/todo_list_mapper.dart';
 import 'package:flutter_todo_list/entity/todo_list.dart';
 
 import 'local/todo_list_provider.dart';
 
 class ToDoListRepository {
-  const ToDoListRepository(this._toDoListProvider);
+  ToDoListRepository(this._toDoListProvider);
 
   final ToDoListProvider _toDoListProvider;
 
@@ -14,7 +14,8 @@ class ToDoListRepository {
   }
 
   Future insertToDoLists(List<ToDoList> toDoLists) async {
-    final values = toDoLists.map((toDoList) => toDoList.toMap()).toList();
+    final values =
+        toDoLists.map((toDoList) => ToDoListMapper.toMap(toDoList)).toList();
     _toDoListProvider.insertToDoLists(values);
   }
 
@@ -24,15 +25,14 @@ class ToDoListRepository {
   }
 
   Stream<List<ToDoList>> getAllToDoLists() {
-    return _toDoListProvider
-        .getAllToDoLists()
-        .map((values) => values.map((item) => toToDoList(item)).toList());
+    return _toDoListProvider.getAllToDoLists().map((values) =>
+        values.map((item) => ToDoListMapper.toToDoList(item)).toList());
   }
 
   Stream<ToDoList> getToDoList(String id) {
     return _toDoListProvider
         .getToDoListWithTaskById(id)
         .where((event) => event.isNotEmpty)
-        .map((event) => toToDoListWithTasksDrift(event));
+        .map((event) => ToDoListMapper.toToDoListWithTasksDrift(event));
   }
 }
