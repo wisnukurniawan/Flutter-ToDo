@@ -1,7 +1,6 @@
-import 'package:collection/collection.dart';
+import 'package:flutter_todo_list/data_provider/utils/date_time_converter.dart';
+import 'package:flutter_todo_list/data_provider/utils/todo_task_parser.dart';
 import 'package:flutter_todo_list/entity/todo_list.dart';
-import 'package:flutter_todo_list/foundation/utils/date_time_converter.dart';
-import 'package:flutter_todo_list/foundation/utils/todo_task_parser.dart';
 
 import '../../data_provider/local/todo_database.dart';
 

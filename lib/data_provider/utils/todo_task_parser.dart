@@ -1,5 +1,5 @@
+import 'package:flutter_todo_list/data_provider/utils/date_time_converter.dart';
 import 'package:flutter_todo_list/entity/todo_status.dart';
-import 'package:flutter_todo_list/foundation/utils/date_time_converter.dart';
 
 import '../../data_provider/local/todo_database.dart';
 import '../../entity/todo_task.dart';

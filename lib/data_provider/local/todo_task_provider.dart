@@ -6,7 +6,7 @@ class ToDoTaskProvider {
 
   final ToDoDatabase _database;
 
-  Future<void> insertToDoTasks(List<Map<String, Object?>> values) async {
+  Future insertToDoTasks(List<Map<String, Object?>> values) async {
     await _database.batch((batch) {
       batch.insertAllOnConflictUpdate(
           _database.todoTasks, values.map((data) => TodoTask.fromJson(data)));

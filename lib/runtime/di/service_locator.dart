@@ -13,7 +13,7 @@ import '../../data_provider/preference/theme_provider.dart';
 
 final getIt = GetIt.instance;
 
-Future<void> initLocator() async {
+Future initLocator() async {
   _initDb();
   _initPreferences();
   _initDataProvider();

@@ -1,5 +1,5 @@
 import 'package:flutter_todo_list/data_provider/preference/theme_provider.dart';
-import 'package:flutter_todo_list/foundation/utils/theme_parser.dart';
+import 'package:flutter_todo_list/data_provider/utils/theme_parser.dart';
 
 import '../entity/theme.dart';
 

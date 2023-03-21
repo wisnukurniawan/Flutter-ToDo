@@ -1,2 +1,4 @@
-- test dao function
+- localization
+- test nested navigation
+- test kind of navigation, pop, push, back
 - create view component

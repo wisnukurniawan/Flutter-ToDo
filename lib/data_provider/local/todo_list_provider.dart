@@ -12,7 +12,7 @@ class ToDoListProvider {
         .go();
   }
 
-  Future<void> insertToDoLists(List<Map<String, dynamic>> values) async {
+  Future insertToDoLists(List<Map<String, dynamic>> values) async {
     await _database.batch((batch) {
       batch.insertAllOnConflictUpdate(
           _database.todoLists, values.map((data) => TodoList.fromJson(data)));
