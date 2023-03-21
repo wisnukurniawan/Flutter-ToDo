@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_todo_list/data_provider/locale_repository.dart';
 import 'package:flutter_todo_list/data_provider/theme_repository.dart';
 import 'package:flutter/material.dart' hide Theme;
 import '../../../entity/theme.dart';
@@ -12,23 +13,37 @@ import 'host_state.dart';
 class HostBloc extends Bloc<HostEvent, HostState> {
   HostBloc({
     required ThemeRepository themeRepository,
+    required LocaleRepository localeRepository,
   })  : _themeRepository = themeRepository,
+        _localeRepository = localeRepository,
         super(const HostState()) {
-    on<LoadTheme>(_onLoadTheme);
+    on<ScreenShown>(_onScreenShown);
     on<ThemeLoaded>(_onThemeLoaded);
+    on<LocaleLoaded>(_onLocaleLoaded);
   }
 
-  late final StreamSubscription _subscription;
-  final ThemeRepository _themeRepository;
+  late final StreamSubscription _themeSubscription;
+  late final StreamSubscription _localeSubscription;
 
-  void _onLoadTheme(HostEvent event, Emitter<HostState> emit) {
-    _subscription = _themeRepository.getTheme().listen((theme) {
+  final ThemeRepository _themeRepository;
+  final LocaleRepository _localeRepository;
+
+  void _onScreenShown(HostEvent event, Emitter<HostState> emit) {
+    _themeSubscription = _themeRepository.getTheme().listen((theme) {
       add(ThemeLoaded(theme: theme));
+    });
+
+    _localeSubscription = _localeRepository.getLocale().listen((locale) {
+      add(LocaleLoaded(locale: locale));
     });
   }
 
   void _onThemeLoaded(ThemeLoaded event, Emitter<HostState> emit) {
     emit(state.copyWith(theme: event.theme));
+  }
+
+  void _onLocaleLoaded(LocaleLoaded event, Emitter<HostState> emit) {
+    emit(state.copyWith(locale: event.locale));
   }
 
   static ColorScheme toColorScheme(Theme theme) {
@@ -48,7 +63,14 @@ class HostBloc extends Bloc<HostEvent, HostState> {
 
   @override
   Future<void> close() {
-    _subscription.cancel();
+    _themeSubscription.cancel();
+    _localeSubscription.cancel();
     return super.close();
+  }
+
+  @override
+  void onChange(Change<HostState> change) {
+    super.onChange(change);
+    debugPrint("Hostbloc-onChange: $change");
   }
 }

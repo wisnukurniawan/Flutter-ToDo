@@ -1,3 +1,5 @@
+import 'package:flutter_todo_list/data_provider/locale_repository.dart';
+import 'package:flutter_todo_list/data_provider/preference/locale_provider.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:flutter_todo_list/data_provider/local/todo_database.dart';
@@ -34,31 +36,40 @@ void _initPreferences() {
 }
 
 void _initDataProvider() {
-  getIt.registerFactory<ToDoListProvider>(
+  getIt.registerLazySingleton<ToDoListProvider>(
     () => ToDoListProvider(getIt.get()),
   );
-  getIt.registerFactory<ToDoTaskProvider>(
+  getIt.registerLazySingleton<ToDoTaskProvider>(
     () => ToDoTaskProvider(getIt.get()),
   );
-  getIt.registerFactoryAsync<ThemeProvider>(
+  getIt.registerLazySingletonAsync<ThemeProvider>(
     () async => ThemeProvider(await getIt.getAsync()),
+  );
+  getIt.registerLazySingletonAsync<LocaleProvider>(
+    () async => LocaleProvider(await getIt.getAsync()),
   );
 }
 
 void _initRepository() {
-  getIt.registerFactory<ToDoListRepository>(
+  getIt.registerLazySingleton<ToDoListRepository>(
     () => ToDoListRepository(getIt.get()),
   );
-  getIt.registerFactory<ToDoTaskRepository>(
+  getIt.registerLazySingleton<ToDoTaskRepository>(
     () => ToDoTaskRepository(getIt.get()),
   );
-  getIt.registerFactoryAsync<ThemeRepository>(
+  getIt.registerLazySingletonAsync<ThemeRepository>(
     () async => ThemeRepository(await getIt.getAsync()),
+  );
+  getIt.registerLazySingletonAsync<LocaleRepository>(
+    () async => LocaleRepository(await getIt.getAsync()),
   );
 }
 
 void _initBloc() {
   getIt.registerFactoryAsync(
-    () async => HostBloc(themeRepository: await getIt.getAsync()),
+    () async => HostBloc(
+      themeRepository: await getIt.getAsync(),
+      localeRepository: await getIt.getAsync(),
+    ),
   );
 }
