@@ -1,7 +1,7 @@
 
 import '../entity/theme.dart';
 
-class RawToThemeMapper {
+class ThemeMapper {
   static Theme toTheme(String value) {
     return Theme.values.byName(value);
   }

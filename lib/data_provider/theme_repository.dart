@@ -9,7 +9,7 @@ class ThemeRepository {
   final ThemeProvider _themeProvider;
 
   Stream<Theme> getTheme() {
-    return _themeProvider.getTheme().map(RawToThemeMapper.toTheme);
+    return _themeProvider.getTheme().map(ThemeMapper.toTheme);
   }
 
   Future<bool> setTheme(Theme theme) async {
