@@ -9,8 +9,8 @@ class ToDoListRepository {
 
   final ToDoListProvider _toDoListProvider;
 
-  Future deleteToDoList(String id) async {
-    _toDoListProvider.deleteToDoList(id);
+  Future deleteToDoList(String id) {
+    return _toDoListProvider.deleteToDoList(id);
   }
 
   Future insertToDoLists(List<ToDoList> toDoLists) async {
@@ -19,8 +19,8 @@ class ToDoListRepository {
     _toDoListProvider.insertToDoLists(values);
   }
 
-  Future updateToDoListName(ToDoList toDoList) async {
-    _toDoListProvider.updateToDoListName(
+  Future updateToDoListName(ToDoList toDoList) {
+    return _toDoListProvider.updateToDoListName(
         toDoList.id, toDoList.name, toDoList.updatedAt.toMillis());
   }
 

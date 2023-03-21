@@ -14,8 +14,8 @@ class ToDoTaskRepository {
     _toDoTaskProvider.insertToDoTasks(values);
   }
 
-  Future updateToDoTaskStatus(ToDoTask toDoTask, String id) async {
-    _toDoTaskProvider.updateToDoTaskStatus(
+  Future updateToDoTaskStatus(ToDoTask toDoTask, String id) {
+    return _toDoTaskProvider.updateToDoTaskStatus(
       id,
       toDoTask.status.name,
       toDoTask.completedAt?.toMillis(),
@@ -23,7 +23,7 @@ class ToDoTaskRepository {
     );
   }
 
-  Future deleteToDoTask(String id) async {
-    _toDoTaskProvider.deleteToDoTask(id);
+  Future deleteToDoTask(String id) {
+    return _toDoTaskProvider.deleteToDoTask(id);
   }
 }
