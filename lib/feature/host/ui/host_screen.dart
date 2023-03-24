@@ -8,7 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../foundation/theme/text.dart';
-import '../../../foundation/widget/FutureResolve.dart';
+import '../../../foundation/widget/future_resolve.dart';
 
 class HostScreen extends StatelessWidget {
   const HostScreen({super.key});

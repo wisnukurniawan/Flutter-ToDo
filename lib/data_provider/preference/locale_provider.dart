@@ -1,4 +1,4 @@
-import 'package:flutter_todo_list/utils/locale.dart';
+import 'package:flutter_todo_list/foundation/utils/locale.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 class LocaleProvider {
