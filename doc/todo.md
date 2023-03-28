@@ -1,3 +1,5 @@
 - test nested navigation
 - test kind of navigation, pop, push, back
+- test multi navigation
+- test deeplink
 - create view component
