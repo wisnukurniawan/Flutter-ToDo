@@ -1,8 +1,8 @@
 import 'package:flutter_todo_list/foundation/utils/date_time_converter.dart';
 import 'package:flutter_todo_list/entity/todo_status.dart';
 
-import 'local/todo_database.dart';
-import '../entity/todo_task.dart';
+import '../local/todo_database.dart';
+import '../../entity/todo_task.dart';
 
 class ToDoTaskMapper {
   static ToDoTask toToDoTask(Map<String, dynamic> map) {

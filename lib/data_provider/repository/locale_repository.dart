@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_list/data_provider/locale_mapper.dart';
+import 'package:flutter_todo_list/data_provider/mapper/locale_mapper.dart';
 import 'package:flutter_todo_list/data_provider/preference/locale_provider.dart';
 
 class LocaleRepository {

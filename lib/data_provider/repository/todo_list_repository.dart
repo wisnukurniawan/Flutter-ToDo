@@ -1,8 +1,8 @@
 import 'package:flutter_todo_list/foundation/utils/date_time_converter.dart';
-import 'package:flutter_todo_list/data_provider/todo_list_mapper.dart';
+import 'package:flutter_todo_list/data_provider/mapper/todo_list_mapper.dart';
 import 'package:flutter_todo_list/entity/todo_list.dart';
 
-import 'local/todo_list_provider.dart';
+import '../local/todo_list_provider.dart';
 
 class ToDoListRepository {
   ToDoListRepository(this._toDoListProvider);

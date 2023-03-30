@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_todo_list/data_provider/locale_repository.dart';
-import 'package:flutter_todo_list/data_provider/theme_repository.dart';
+import 'package:flutter_todo_list/data_provider/repository/locale_repository.dart';
+import 'package:flutter_todo_list/data_provider/repository/theme_repository.dart';
 import 'package:flutter/material.dart' hide Theme;
 import '../../../entity/theme.dart';
 import '../../../foundation/theme/color.dart';

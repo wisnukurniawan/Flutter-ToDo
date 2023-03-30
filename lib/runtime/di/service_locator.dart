@@ -1,13 +1,13 @@
-import 'package:flutter_todo_list/data_provider/locale_repository.dart';
+import 'package:flutter_todo_list/data_provider/repository/locale_repository.dart';
 import 'package:flutter_todo_list/data_provider/preference/locale_provider.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:flutter_todo_list/data_provider/local/todo_database.dart';
 import 'package:flutter_todo_list/data_provider/local/todo_list_provider.dart';
 import 'package:flutter_todo_list/data_provider/local/todo_task_provider.dart';
-import 'package:flutter_todo_list/data_provider/theme_repository.dart';
-import 'package:flutter_todo_list/data_provider/todo_list_repository.dart';
-import 'package:flutter_todo_list/data_provider/todo_task_repository.dart';
+import 'package:flutter_todo_list/data_provider/repository/theme_repository.dart';
+import 'package:flutter_todo_list/data_provider/repository/todo_list_repository.dart';
+import 'package:flutter_todo_list/data_provider/repository/todo_task_repository.dart';
 import 'package:flutter_todo_list/feature/host/bloc/host_bloc.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
@@ -50,6 +50,8 @@ void _initDataProvider() {
   );
 }
 
+// no need to put it in get it
+// make repository as interface
 void _initRepository() {
   getIt.registerLazySingleton<ToDoListRepository>(
     () => ToDoListRepository(getIt.get()),
@@ -65,6 +67,7 @@ void _initRepository() {
   );
 }
 
+// no need to put it in get it
 void _initBloc() {
   getIt.registerFactoryAsync(
     () async => HostBloc(

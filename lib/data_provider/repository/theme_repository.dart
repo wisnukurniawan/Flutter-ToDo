@@ -1,7 +1,7 @@
 import 'package:flutter_todo_list/data_provider/preference/theme_provider.dart';
-import 'package:flutter_todo_list/data_provider/theme_mapper.dart';
+import 'package:flutter_todo_list/data_provider/mapper/theme_mapper.dart';
 
-import '../entity/theme.dart';
+import '../../entity/theme.dart';
 
 class ThemeRepository {
   const ThemeRepository(this._themeProvider);
