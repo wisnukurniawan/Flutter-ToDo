@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_todo_list/feature/test_multi_bloc/state.dart';
-import 'package:flutter_todo_list/feature/test_multi_bloc/widget1.dart';
+import 'package:flutter_todo_list/experiment/test_multi_bloc/state.dart';
+import 'package:flutter_todo_list/experiment/test_multi_bloc/widget1.dart';
 
 import 'bloc1.dart';
 import 'bloc2.dart';

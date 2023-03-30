@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 
-import '../../feature/test_repository/ui/test_repository_screen.dart';
+import '../../experiment/test_repository/ui/test_repository_screen.dart';
 
 const introPageName = 'intro';
 const introPagePath = '/intro';
